@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clickButton.start();
+                Toast buttonsToast = Toast.makeText(getApplicationContext(), "Story continues!", Toast.LENGTH_SHORT);
+                buttonsToast.show();
                 buttonOneStoryPath ++;
                 if (buttonOneStoryPath == 1 && buttonTwoStoryPath == 0){
                     storyText.setText(R.string.T3_Story);
@@ -68,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clickButton.start();
+                Toast buttonToast = Toast.makeText(getApplicationContext(), "Story continues!", Toast.LENGTH_SHORT);
+                buttonToast.show();
                 buttonTwoStoryPath ++;
                 if (buttonOneStoryPath == 1 && buttonTwoStoryPath == 1){
                     storyText.setText(R.string.T5_End);
