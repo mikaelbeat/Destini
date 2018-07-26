@@ -1,5 +1,6 @@
 package com.londonappbrewery.destini;
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    MediaPlayer backgroundMusic;
+    MediaPlayer clickButton;
 
     // TODO: Steps 4 & 8 - Declare member variables here:
     TextView storyText;
@@ -22,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        backgroundMusic = MediaPlayer.create(getApplicationContext(), R.raw.far);
+        backgroundMusic.start();
+
+        clickButton = MediaPlayer.create(getApplicationContext(),R.raw.button);
+
         // TODO: Step 5 - Wire up the 3 views from the layout to the member variables:
         storyText = (TextView) findViewById(R.id.storyTextView);
         buttonOne = (Button) findViewById(R.id.buttonTop);
@@ -32,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         buttonOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                clickButton.start();
                 buttonOneStoryPath ++;
                 if (buttonOneStoryPath == 1 && buttonTwoStoryPath == 0){
                     storyText.setText(R.string.T3_Story);
@@ -58,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         buttonTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                clickButton.start();
                 buttonTwoStoryPath ++;
                 if (buttonOneStoryPath == 1 && buttonTwoStoryPath == 1){
                     storyText.setText(R.string.T5_End);
@@ -86,5 +96,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        backgroundMusic.pause();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        backgroundMusic.start();
     }
 }
