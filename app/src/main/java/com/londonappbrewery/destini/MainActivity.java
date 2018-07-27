@@ -18,8 +18,7 @@ public class MainActivity extends AppCompatActivity {
     TextView storyText;
     Button buttonOne;
     Button buttonTwo;
-    int buttonOneStoryPath = 0;
-    int buttonTwoStoryPath = 0;
+    int storyIndex = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,20 +43,12 @@ public class MainActivity extends AppCompatActivity {
                 clickButton.start();
                 Toast buttonsToast = Toast.makeText(getApplicationContext(), "Story continues!", Toast.LENGTH_SHORT);
                 buttonsToast.show();
-                buttonOneStoryPath ++;
-                if (buttonOneStoryPath == 1 && buttonTwoStoryPath == 0){
-                    storyText.setText(R.string.T3_Story);
-                    buttonOne.setText(R.string.T3_Ans1);
-                    buttonTwo.setText((R.string.T3_Ans2));
-                } else if (buttonOneStoryPath == 1 && buttonTwoStoryPath == 1){
+                if (storyIndex == 1 || storyIndex == 2){
                     storyText.setText(R.string.T3_Story);
                     buttonOne.setText(R.string.T3_Ans1);
                     buttonTwo.setText(R.string.T3_Ans2);
-                } else if (buttonOneStoryPath == 2 && buttonTwoStoryPath == 0){
-                    storyText.setText(R.string.T6_End);
-                    buttonOne.setVisibility(View.GONE);
-                    buttonTwo.setVisibility(View.GONE);
-                } else if (buttonOneStoryPath == 2 && buttonTwoStoryPath == 1){
+                    storyIndex = 3;
+                } else {
                     storyText.setText(R.string.T6_End);
                     buttonOne.setVisibility(View.GONE);
                     buttonTwo.setVisibility(View.GONE);
@@ -73,25 +64,16 @@ public class MainActivity extends AppCompatActivity {
                 clickButton.start();
                 Toast buttonToast = Toast.makeText(getApplicationContext(), "Story continues!", Toast.LENGTH_SHORT);
                 buttonToast.show();
-                buttonTwoStoryPath ++;
-                if (buttonOneStoryPath == 1 && buttonTwoStoryPath == 1){
-                    storyText.setText(R.string.T5_End);
-                    buttonOne.setVisibility(View.GONE);
-                    buttonTwo.setVisibility(View.GONE);
-                }
-                else if (buttonOneStoryPath == 0 && buttonTwoStoryPath == 1){
+                if(storyIndex == 1){
                     storyText.setText(R.string.T2_Story);
                     buttonOne.setText(R.string.T2_Ans1);
                     buttonTwo.setText(R.string.T2_Ans2);
-                } else if (buttonOneStoryPath == 0 && buttonTwoStoryPath == 2){
+                    storyIndex = 2;
+                } else if (storyIndex == 2){
                     storyText.setText(R.string.T4_End);
                     buttonOne.setVisibility(View.GONE);
                     buttonTwo.setVisibility(View.GONE);
-                } else if (buttonOneStoryPath == 1 && buttonTwoStoryPath == 1){
-                    storyText.setText(R.string.T3_Story);
-                    buttonOne.setText(R.string.T3_Ans1);
-                    buttonTwo.setText(R.string.T3_Ans2);
-                } else if (buttonOneStoryPath == 1 && buttonTwoStoryPath == 2){
+                } else {
                     storyText.setText(R.string.T5_End);
                     buttonOne.setVisibility(View.GONE);
                     buttonTwo.setVisibility(View.GONE);
