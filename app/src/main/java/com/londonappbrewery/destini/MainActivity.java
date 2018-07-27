@@ -78,11 +78,8 @@ public class MainActivity extends AppCompatActivity {
                     buttonOne.setVisibility(View.GONE);
                     buttonTwo.setVisibility(View.GONE);
                 }
-
-
             }
         });
-
     }
 
     @Override
